@@ -1,0 +1,20 @@
+.mat-dialog-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chips-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.chip {
+  width: 50px;
+}
+
+.create-section-button {
+  background-color: rgb(212, 212, 255);
+  margin-left: auto;
+}

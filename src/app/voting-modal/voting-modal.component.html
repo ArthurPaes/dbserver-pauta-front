@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Pauta: {{ pauta.title }}</h2>
+<mat-dialog-content>
+  <p>{{ pauta.description }}</p>
+</mat-dialog-content>
+<mat-dialog-actions class="mat-dialog-actions">
+  <p>Você é a favor desta pauta?</p>
+  <div class="chips-container">
+    <mat-chip
+      (click)="onYesClick()"
+      [ngStyle]="{
+        'background-color': selectedAnswer
+          ? 'rgb(32, 158, 32)'
+          : 'rgb(203, 228, 203)'
+      }"
+      class="chip"
+      >SIM</mat-chip
+    >
+    <mat-chip
+      (click)="onNoClick()"
+      [ngStyle]="{
+        'background-color': selectedAnswer
+          ? 'rgb(255, 183, 183)'
+          : 'rgb(217, 76, 76)'
+      }"
+      class="chip"
+      >NÃO</mat-chip
+    >
+  </div>
+  <button
+    mat-raised-button
+    [disabled]="selectedAnswer === undefined"
+    class="create-section-button"
+    (click)="onVoteClick()"
+  >
+    VOTAR
+  </button>
+</mat-dialog-actions>
