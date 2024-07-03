@@ -1,0 +1,35 @@
+<div class="login-container">
+  <div class="login-box">
+    <div class="div-form-container">
+      <h2>Bem vindo, associado</h2>
+
+      <mat-form-field class="mat-form-field">
+        <mat-label>E-mail:</mat-label>
+        <input
+          [(ngModel)]="login.email"
+          matInput
+          placeholder="example@email.com"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="mat-form-field">
+        <mat-label>Senha:</mat-label>
+        <input
+          type="password"
+          [(ngModel)]="login.password"
+          matInput
+        />
+      </mat-form-field>
+    </div>
+    <div class="buttons-container">
+      <button
+        [disabled]="login.password.length <= 0 || login.email.length <= 0"
+        (click)="onLoginInClick()"
+        mat-raised-button
+      >
+        Entrar
+      </button>
+      <button (click)="onSignUpClick()" mat-raised-button>Cadastrar</button>
+    </div>
+  </div>
+</div>
