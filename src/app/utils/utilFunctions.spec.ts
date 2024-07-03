@@ -4,7 +4,6 @@ describe('preventNonNumericCharacters', () => {
   let inputElement: HTMLInputElement;
 
   beforeEach(() => {
-    // Create a mock input element
     inputElement = document.createElement('input');
     inputElement.value = '';
   });
