@@ -1,0 +1,57 @@
+<div class="sign-up-container">
+  <div class="sign-up-box">
+    <div class="div-form-container">
+      <h2>Cadastre-se</h2>
+
+      <mat-form-field class="mat-form-field">
+        <mat-label>Nome:</mat-label>
+        <input
+          [(ngModel)]="newUserData.name"
+          matInput
+          placeholder="João Silva"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="mat-form-field">
+        <mat-label>CPF:</mat-label>
+        <input
+          type="text"
+          mask="000.000.000-00"
+          [(ngModel)]="newUserData.cpf"
+          matInput
+          placeholder="012.234.567-89"
+          (keyup)="preventNonNumeric($event)"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="mat-form-field">
+        <mat-label>E-mail:</mat-label>
+        <input
+          [(ngModel)]="newUserData.email"
+          matInput
+          placeholder="joaosilva@email.com"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="mat-form-field">
+        <mat-label>Senha:</mat-label>
+        <input type="password" [(ngModel)]="newUserData.password" matInput />
+      </mat-form-field>
+    </div>
+    <div class="buttons-container">
+      <button
+        [disabled]="
+          newUserData.email.length <= 0 ||
+          newUserData.password.length <= 0 ||
+          newUserData.name.length <= 0 ||
+          newUserData.cpf.length <= 0
+        "
+        style="width: 200px"
+        (click)="onCreateAccountClick()"
+        mat-raised-button
+      >
+        Criar
+      </button>
+    </div>
+  </div>
+</div>
