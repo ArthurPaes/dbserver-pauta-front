@@ -1,0 +1,105 @@
+<div class="pautas-list-container">
+  <div style="display: flex; flex-direction: row; gap: 100px">
+    <div>
+      <div class="title-container">
+        <h1>Pautas abertas</h1>
+        <button
+          (click)="openNewPautaDialog()"
+          style="background-color: rgb(212, 212, 255)"
+          mat-raised-button
+        >
+          <mat-icon>add</mat-icon>Criar uma nova pauta
+        </button>
+      </div>
+      <div *ngIf="openPautasArray.length <= 0">
+        Não existem pautas abertas. Crie uma
+      </div>
+
+      <div *ngFor="let pauta of openPautasArray">
+        <mat-card
+          *ngIf="!pauta.isExpired"
+          class="card-container"
+          appearance="outlined"
+        >
+          <div>
+            <mat-card-header class="open-pautas-header">
+              <mat-card-title>Pauta: {{ pauta.name }}</mat-card-title>
+              <mat-chip *ngIf="pauta.hasVoted"
+                >Você já votou nesta pauta</mat-chip
+              >
+            </mat-card-header>
+            <mat-card-content>
+              <div class="description-container">
+                <p class="description-label">Descrição:</p>
+                <p class="pauta-description">
+                  {{ pauta.description }}
+                </p>
+              </div>
+
+              <div class="open-pautas-footer">
+                <mat-chip>Duração: {{ pauta.expiration }}min</mat-chip>
+                <button
+                  [disabled]="pauta.hasVoted"
+                  (click)="openVotingDialog(pauta)"
+                  style="background-color: rgb(212, 212, 255)"
+                  mat-raised-button
+                >
+                  Votar
+                </button>
+              </div>
+            </mat-card-content>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+    <div>
+      <h1>Pautas Encerradas</h1>
+      <div class="title-container" *ngFor="let pauta of expiredPautasArray">
+        <mat-card
+          *ngIf="pauta.isExpired"
+          class="card-container"
+          appearance="outlined"
+        >
+          <mat-card-header style="margin-bottom: 10px">
+            <mat-card-title>Pauta:{{ pauta.name }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="description-container">
+              <p class="description-label">Descrição:</p>
+              <p class="pauta-description">
+                {{ pauta.description }}
+              </p>
+            </div>
+
+            <div class="open-pautas-footer">
+              <div>
+                <mat-chip
+                  [ngStyle]="{
+                    'background-color': calculateVotes(pauta)
+                      ? 'rgb(203, 228, 203)'
+                      : 'rgb(255, 183, 183)'
+                  }"
+                  >{{
+                    calculateVotes(pauta) ? "Aprovada" : "Não Aprovada"
+                  }}</mat-chip
+                >
+              </div>
+              <div class="vote-counter-container">
+                <mat-chip>Votos sim: {{ pauta.votesTrue }}</mat-chip>
+                <mat-chip>Votos não: {{ pauta.votesFalse }}</mat-chip>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="position: absolute; top: 0; right: 0">
+  <div>
+    <p>Nome de Usuário: {{ userData.name }}</p>
+    <p>Email: {{ userData.email }}</p>
+  </div>
+  <button (click)="logOut()" mat-raised-button>Sair</button>
+</div>
