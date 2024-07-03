@@ -1,0 +1,36 @@
+<div class="direction-column-center">
+  <h2 mat-dialog-title>Criar uma nova pauta</h2>
+  <mat-dialog-content style="display: flex; flex-direction: column">
+    <mat-form-field>
+      <mat-label>Nome:</mat-label>
+      <input [(ngModel)]="newPauta.name" matInput placeholder="Nova pauta" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Descrição:</mat-label>
+      <textarea [(ngModel)]="newPauta.description" matInput></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Duração (minutos):</mat-label>
+      <input
+        (keyup)="preventNonNumeric($event)"
+        [(ngModel)]="newPauta.expiration"
+        type="text"
+        matInput
+      />
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions class="direction-column-center">
+    <button
+      [disabled]="
+        newPauta.name.length <= 0 ||
+        newPauta.description.length <= 0 ||
+        newPauta.expiration <= 0
+      "
+      class="create-pauta-button"
+      mat-raised-button
+      (click)="onNoClick()"
+    >
+      Criar pauta
+    </button>
+  </mat-dialog-actions>
+</div>
