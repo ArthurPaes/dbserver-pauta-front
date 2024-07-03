@@ -62,7 +62,7 @@ describe('SignUpComponent', () => {
       Promise.resolve({ cpf: '123', email: '123', id: 1, name: '123' })
     );
     await component.onCreateAccountClick();
-    tick(); // simulate the passage of time
+    tick();
     expect(toastrServiceSpy.success).toHaveBeenCalledWith(
       'Conta criada com sucesso!'
     );
@@ -72,7 +72,7 @@ describe('SignUpComponent', () => {
   it('should show error toast on account creation failure', fakeAsync(async () => {
     userApiSpy.createUser.and.returnValue(Promise.reject());
     await component.onCreateAccountClick();
-    tick(); // simulate the passage of time
+    tick();
     expect(toastrServiceSpy.error).toHaveBeenCalledWith('Erro ao criar conta');
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/login']);
   }));
